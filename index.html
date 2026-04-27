@@ -8,7 +8,8 @@
             font-family: Arial;
             text-align: center;
             margin-top: 80px;
-            background: #f4f4f4;
+            background: url('https://images.openai.com/static-rsc-4/1pbo8T-7jfs4EXMzKLDBdwj3Z96XRG7J8OOh2ATjT78zSUDWzUHP8XQWvlTwtcqkSt_MOEo_qgxgiPZWAlMRxsaFAzRTy0311dVt44Ao-3OgydgB4dtaX6q828hTAkWX_O_NsP4HvOVhSLFfcbigRjPKFGyHyNY6nTBOiKmOlVmc6gWVA8gPcXau0_3Y4tyo?purpose=fullsize') no-repeat center center fixed;
+            background-size: cover;
         }
         button {
             padding: 15px 25px;
@@ -28,55 +29,18 @@
 </head>
 <body>
     <h1>Roblox Username Generator</h1>
-    <label for="country">Choose a country:</label>
-    <select id="country" onchange="updateWords()">
-        <option value="">--Select Country--</option>
+    <label for="country">Choose countries (multiple):</label>
+    <select id="country" onchange="updateWords()" multiple>
         <option value="us">USA</option>
         <option value="uk">UK</option>
         <option value="japan">Japan</option>
+        <option value="france">France</option>
+        <option value="germany">Germany</option>
+        <option value="brazil">Brazil</option>
+        <option value="india">India</option>
+        <!-- Πρόσθεσε όσες χώρες θέλεις -->
     </select>
     <br><br>
     <label for="letters">Enter letters (optional):</label>
     <input type="text" id="letters" placeholder="e.g., XZ">
     <br><br>
-    <button onclick="generate()">Generate Username</button>
-    <button onclick="restore()">Restore Previous</button>
-    <div id="result"></div>
-
-    <script>
-        const words = {
-            us: ["Star", "Rocket", "Hero", "Galaxy", "Player", "Pro"],
-            uk: ["Knight", "Royal", "Wizard", "Magic", "Champion", "Explorer"],
-            japan: ["Samurai", "Ninja", "Shogun", "Sakura", "Dragon", "Knight"]
-        };
-        let previousUsername = "";
-
-        function updateWords() {
-            // Δεν χρειάζεται αλλαγή εδώ, απλά θα διαβάσουμε το dropdown στο generate.
-        }
-
-        function generate() {
-            const country = document.getElementById('country').value;
-            const letters = document.getElementById('letters').value;
-            if (!country || !words[country]) {
-                document.getElementById("result").innerText = "Please select a country.";
-                return;
-            }
-            const wordList = words[country];
-            let w1 = wordList[Math.floor(Math.random() * wordList.length)];
-            let w2 = wordList[Math.floor(Math.random() * wordList.length)];
-            if (letters) {
-                w1 = letters + w1; // Προσθέτουμε τα γράμματα στην αρχή
-            }
-            previousUsername = w1 + w2; // Αποθήκευση για επαναφορά
-            document.getElementById("result").innerText = previousUsername;
-        }
-
-        function restore() {
-            if (previousUsername) {
-                document.getElementById("result").innerText = previousUsername;
-            }
-        }
-    </script>
-</body>
-</html>
